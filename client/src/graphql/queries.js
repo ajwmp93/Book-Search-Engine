@@ -1,6 +1,6 @@
 // server/graphql/queries.js
 
-const GET_ME = `
+export const GET_ME = `
   query {
     me {
       _id
@@ -18,7 +18,3 @@ const GET_ME = `
     }
   }
 `;
-
-module.exports = {
-  GET_ME,
-};

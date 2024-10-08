@@ -1,7 +1,7 @@
 // server/graphql/resolvers.js
-const User = require('../models/User'); // Assuming you're using a User model
-const { AuthenticationError } = require('apollo-server-express');
-const { signToken } = require('./auth'); // Assuming you have a function to sign tokens
+import User from '../models/User'; // Assuming you're using a User model
+import { AuthenticationError } from 'apollo-server-express';
+import { signToken } from './auth'; // Assuming you have a function to sign tokens
 
 const resolvers = {
   Query: {
@@ -53,4 +53,4 @@ const resolvers = {
   },
 };
 
-module.exports = resolvers;
+export default resolvers;
