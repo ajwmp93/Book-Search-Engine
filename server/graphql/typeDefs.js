@@ -1,4 +1,3 @@
-// graphql/typeDefs.js
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
@@ -6,16 +5,44 @@ const typeDefs = gql`
     _id: ID!
     username: String!
     email: String!
+    bookCount: Int!
+    savedBooks: [Book]
+  }
+   
+  type Book {
+    bookId: String!
+    authors: [String]!
+    description: String!
+    title: String!
+    image: String
+    link: String
+  }
+
+  type Auth {
+    token: String!
+    user: User!
+  }
+
+  input SaveBookInput {
+    bookId: String!
+    authors: [String]!
+    description: String!
+    title: String!
+    image: String
+    link: String
   }
 
   type Query {
-    users: [User]
-    user(_id: ID!): User
+    users: [User]          
+    user(_id: ID!): User   
+    me: User               
   }
 
   type Mutation {
-    addUser(username: String!, email: String!): User
-    login(username: String!, password: String!): String
+    login(email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
+    saveBook(input: SaveBookInput!): User
+    removeBook(bookId: String!): User
   }
 `;
 
