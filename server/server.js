@@ -3,9 +3,9 @@ const path = require('path');
 const db = require('./config/connection');
 const routes = require('./routes');
 const { ApolloServer } = require('apollo-server-express');
-const { authMiddleware } = require('./path/to/your/middleware'); // Adjust the path accordingly
-const typeDefs = require('./path/to/typeDefs'); // Your GraphQL type definitions
-const resolvers = require('./path/to/resolvers'); // Your GraphQL resolvers
+const { authMiddleware } = require('./path/to/your/middleware'); // Adjust the path
+const typeDefs = require('./graphql/typeDefs'); // Updated path to typeDefs
+const resolvers = require('./graphql/resolvers'); // Updated path to resolvers
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -24,7 +24,6 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: ({ req }) => {
-    // Pass the request to the auth middleware for authentication
     const user = authMiddleware({ req });
     return { user }; // Include the user in the context
   },
